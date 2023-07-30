@@ -28,9 +28,7 @@ public class GuiApplication extends Application {
     private final Button decryptButton = createStyledButton("Decrypt");
     private final Label resultLabel = createStyledLabel("Result:");
     private final TextArea resultTextArea = new TextArea();
-
     private GridPane passwordLayout;
-
     private String encryptedText; // Variable to store the encrypted text without the "Encrypted: " label
 
     @Override
@@ -87,9 +85,8 @@ public class GuiApplication extends Application {
         primaryStage.show();
 
         encryptButton.setOnAction(e -> {
-            CustomPasswordField passwordField = (CustomPasswordField) passwordLayout.getChildren().stream().filter(x-> {
-                return x.getId().equals(PASSWORD_FIELD_ID);
-            }).findFirst().orElse(null);
+            CustomPasswordField passwordField = (CustomPasswordField) passwordLayout.getChildren().stream()
+                    .filter(x-> x.getId().equals(PASSWORD_FIELD_ID)).findFirst().orElse(null);
             assert passwordField != null;
             String password = passwordField.getText();
             String originalText = messageTextArea.getText();
